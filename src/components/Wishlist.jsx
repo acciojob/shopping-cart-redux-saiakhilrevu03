@@ -20,14 +20,23 @@ const Wishlist = () => {
       <h2>Wishlist</h2>
       {wishlistProducts.length === 0 && <p>No items in wishlist.</p>}
       {wishlistProducts.map(p => (
-        <div key={p.id} style={{ marginBottom: '1rem' }}>
-          <strong>{p.name}</strong> - ${p.price}
-          <button style={{ marginLeft: '1rem' }} onClick={() => dispatch(addItem(p))}>
-            Add to Cart
-          </button>
-          <button style={{ marginLeft: '1rem' }} onClick={() => dispatch(removeFromWishlist(p.id))}>
-            Remove
-          </button>
+        <div key={p.id} className="custom-card card mb-3">
+          <div className="card-body">
+            <h5 className="card-title">{p.name}</h5>
+            <p className="card-text">${p.price}</p>
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(addItem(p))}
+            >
+              Add to Cart
+            </button>
+            <button
+              className="btn btn-danger ml-2"
+              onClick={() => dispatch(removeFromWishlist(p.id))}
+            >
+              Remove
+            </button>
+          </div>
         </div>
       ))}
     </div>
