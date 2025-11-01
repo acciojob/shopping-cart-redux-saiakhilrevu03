@@ -5,15 +5,26 @@ import Wishlist from './components/Wishlist';
 
 function App() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around', padding: '2rem' }}>
-      <div style={{ width: '30%' }}>
-        <ProductList />
-      </div>
-      <div style={{ width: '30%' }}>
-        <Cart />
-      </div>
-      <div style={{ width: '30%' }}>
-        <Wishlist />
+    <div>
+      <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container">
+          <div className="text-center w-100">
+            <h1>Shopping Cart</h1>
+          </div>
+        </div>
+      </nav>
+      <div className="container mt-4">
+        <div className="row">
+          <div className="col-md-4">
+            <ProductList />
+          </div>
+          <div className="col-md-4">
+            <Cart />
+          </div>
+          <div className="col-md-4">
+            <Wishlist />
+          </div>
+        </div>
       </div>
     </div>
   );
