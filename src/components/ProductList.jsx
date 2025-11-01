@@ -25,12 +25,23 @@ const ProductList = () => {
     <div>
       <h2>Products</h2>
       {products.map(p => (
-        <div key={p.id} style={{ marginBottom: '1rem' }}>
-          <strong>{p.name}</strong> - ${p.price}
-          <button style={{ marginLeft: '1rem' }} onClick={() => dispatch(addItem(p))}>Add to Cart</button>
-          <button style={{ marginLeft: '1rem' }} onClick={() => toggleWishlist(p.id)}>
-            {wishlist.includes(p.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
-          </button>
+        <div key={p.id} className="custom-card card mb-3">
+          <div className="card-body">
+            <h5 className="card-title">{p.name}</h5>
+            <p className="card-text">${p.price}</p>
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(addItem(p))}
+            >
+              Add to Cart
+            </button>
+            <button
+              className="btn btn-outline-secondary ml-2"
+              onClick={() => toggleWishlist(p.id)}
+            >
+              {wishlist.includes(p.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
+            </button>
+          </div>
         </div>
       ))}
     </div>
