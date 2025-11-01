@@ -26,28 +26,51 @@ const Cart = () => {
       <h2>Shopping Cart</h2>
       {items.length === 0 && <p>Your cart is empty.</p>}
       {items.map(item => (
-        <div key={item.id} style={{ marginBottom: '1rem' }}>
-          <strong>{item.name}</strong> - ${item.price} x {item.quantity}
-          <button onClick={() => dispatch(increaseQuantity(item.id))} style={{ marginLeft: '0.5rem' }}>+</button>
-          <button onClick={() => dispatch(decreaseQuantity(item.id))} style={{ marginLeft: '0.5rem' }}>-</button>
-          <button onClick={() => dispatch(removeItem(item.id))} style={{ marginLeft: '0.5rem' }}>Remove</button>
+        <div key={item.id} className="custom-card card mb-3">
+          <div className="card-body">
+            <h5 className="card-title">{item.name}</h5>
+            <p className="card-text">${item.price} x {item.quantity}</p>
+            <button
+              className="btn btn-secondary mr-2"
+              onClick={() => dispatch(increaseQuantity(item.id))}
+            >
+              +
+            </button>
+            <button
+              className="btn btn-secondary mr-2"
+              onClick={() => dispatch(decreaseQuantity(item.id))}
+            >
+              -
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={() => dispatch(removeItem(item.id))}
+            >
+              Remove
+            </button>
+          </div>
         </div>
       ))}
       {items.length > 0 && (
-        <>
+        <div className="mt-3">
           <p>Total: ${total.toFixed(2)}</p>
           <p>Discount ({coupon || 'None'}): -${discountAmount.toFixed(2)}</p>
           <p><strong>Final Total: ${finalTotal.toFixed(2)}</strong></p>
           <input
             type="text"
+            className="form-control mb-2"
             placeholder="Coupon code"
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
           />
-          <button onClick={handleApplyCoupon}>Apply Coupon</button>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button onClick={() => dispatch(clearCoupon())}>Clear Coupon</button>
-        </>
+          <button className="btn btn-primary mr-2" onClick={handleApplyCoupon}>
+            Apply Coupon
+          </button>
+          <button className="btn btn-outline-secondary" onClick={() => dispatch(clearCoupon())}>
+            Clear Coupon
+          </button>
+          {error && <p className="text-danger mt-2">{error}</p>}
+        </div>
       )}
     </div>
   );
